@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Torneo Free Fire</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: Arial, sans-serif; 
+        }
+        
+        body { 
+            background: #0a0a0a; 
+            color: #fff; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #ffa600;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffa600;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .welcome-section h1 {
+            color: #ffa600;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .welcome-section p {
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .torneos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .torneo-card {
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .torneo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .torneo-image {
+            width: 100%;
+            height: 180px;
+            background: #333;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .torneo-info {
+            padding: 1.5rem;
+        }
+
+        .torneo-info h3 {
+            color: #ffa600;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .torneo-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .torneo-desc {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffa600;
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #ffbb33;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #ffa600;
+            color: #ffa600;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 166, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .welcome-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .torneos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="home.html" class="logo">Free Fire</a>
+        
+        <div class="nav-links">
+            <a href="#torneos">Torneos</a>
+            <a href="#ranking">Ranking</a>
+            <a href="#reglamento">Reglamento</a>
+            <a href="#premios">Premios</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        
+        <div class="user-menu">
+            <div class="user-avatar" id="userAvatar">
+                <span id="userInitial">U</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="welcome-section">
+            <h1>¡Bienvenido al Torneo de Free Fire!</h1>
+            <p>Demuestra tus habilidades, compite contra los mejores jugadores y gana increíbles premios en nuestro torneo exclusivo de Free Fire.</p>
+        </section>
+
+        <h2 style="color: #ffa600; margin-bottom: 1.5rem;">Próximos Torneos</h2>
+        
+        <div class="torneos-grid">
+            <div class="torneo-card">
+                <div class="torneo-image" style="background-image: url('img1.jpg');"></div>
+                <div class="torneo-info">
+                    <h3>Torneo Clasificatorio</h3>
+                    <div class="torneo-meta">
+                        <span>15 Dic 2023</span>
+                        <span>50 equipos</span>
+                    </div>
+                    <p class="torneo-desc">Clasificatoria para el torneo principal. Los 10 mejores equipos pasarán a la final.</p>
+                    <a href="#inscribirse" class="btn">Inscribirse</a>
+                </div>
+            </div>
+            
+            <div class="torneo-card">n                <div class="torneo-image" style="background: #555;"></div>
+                <div class="torneo-info">
+                    <h3>1 vs 1 Duelos</h3>
+                    <div class="torneo-meta">
+                        <span>20 Dic 2023</span>
+                        <span>32 jugadores</span>
+                    </div>
+                    <p class="torneo-desc">Duelos 1 vs 1. Demuestra quién es el mejor en enfrentamientos cara a cara.</p>
+                    <a href="#inscribirse" class="btn">Inscribirse</a>
+                </div>
+            </div>
+            
+            <div class="torneo-card">
+                <div class="torneo-image" style="background: #777;"></div>
+                <div class="torneo-info">
+                    <h3>Torneo Nocturno</h3>
+                    <div class="torneo-meta">
+                        <span>25 Dic 2023</span>
+                        <span>25 equipos</span>
+                    </div>
+                    <p class="torneo-desc">Torneo exclusivo para jugadores nocturnos. ¡Premios especiales para los ganadores!</p>
+                    <a href="#inscribirse" class="btn">Inscribirse</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SDK de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // Configuración de Supabase
+        const SUPABASE_URL = "https://tmgsfbuvynxsrkxzsarr.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRtZ3NmYnV2eW54c3JreHpzYXJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NTkyNjgsImV4cCI6MjA4MDMzNTI2OH0.fGiMmNhYNTsNhnIbVFpLnF6hibZX8QoaJV6NreB-rfo";
+        
+        // Inicializar Supabase
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: {
+                autoRefreshToken: true,
+                persistSession: true
+            }
+        });
+
+        // Verificar autenticación al cargar la página
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const { data: { user }, error } = await supabaseClient.auth.getUser();
+                
+                if (error || !user) {
+                    // Si no está autenticado, redirigir al login
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                // Mostrar inicial del usuario
+                const userInitial = user.email ? user.email.charAt(0).toUpperCase() : 'U';
+                document.getElementById('userInitial').textContent = userInitial;
+                
+            } catch (error) {
+                console.error('Error al verificar autenticación:', error);
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Cerrar sesión
+        document.getElementById('userAvatar').addEventListener('click', async () => {
+            const { error } = await supabaseClient.auth.signOut();
+            if (!error) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

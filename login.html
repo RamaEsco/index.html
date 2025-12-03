@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Torneo Free Fire</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: Arial, sans-serif; 
+        }
+        
+        body { 
+            background: #0a0a0a; 
+            color: #fff; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #333;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #ffa600;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            color: #888;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            color: #ffa600;
+            border-bottom: 2px solid #ffa600;
+        }
+
+        .form-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form {
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .form-section {
+            width: 100%;
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: #ffa600;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 166, 0, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #ffa600;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e69500;
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            color: #ffa600;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .back-to-home {
+            display: block;
+            text-align: center;
+            color: #71695a;
+            text-decoration: none;
+            margin: 20px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .back-to-home:hover {
+            color: #56524b;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .tab {
+                padding: 10px 5px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>Free Fire</h1>
+            <p>Accede a tu cuenta</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="login">Iniciar Sesión</div>
+            <div class="tab" data-tab="register">Registrarse</div>
+        </div>
+
+        <div class="form-container">
+            <!-- Formulario de Inicio de Sesión -->
+            <div class="form-section active" id="login-form">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="login-email">Correo Electrónico</label>
+                        <input type="email" id="login-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Contraseña</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <a href="#" class="forgot-password" id="show-recover">¿Olvidaste tu contraseña?</a>
+                    <button type="submit" class="btn">Iniciar Sesión</button>
+                </form>
+            </div>
+
+            <!-- Formulario de Registro -->
+            <div class="form-section" id="register-form">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="register-name">Nombre de Usuario</label>
+                        <input type="text" id="register-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Correo Electrónico</label>
+                        <input type="email" id="register-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Contraseña</label>
+                        <input type="password" id="register-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirmar Contraseña</label>
+                        <input type="password" id="register-confirm" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn">Crear Cuenta</button>
+                </form>
+            </div>
+
+            <!-- Formulario de Recuperación de Contraseña -->
+            <div class="form-section" id="recover-form">
+                <form id="recoverForm">
+                    <p style="color: #888; margin-bottom: 20px;">Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+                    <div class="form-group">
+                        <label for="recover-email">Correo Electrónico</label>
+                        <input type="email" id="recover-email" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn">Enviar Enlace</button>
+                    <a href="#" class="forgot-password" id="back-to-login">Volver a Iniciar Sesión</a>
+                </form>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-to-home">Volver al Inicio</a>
+    </div>
+
+    <!-- SDK de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuración de Supabase -->
+    <script>
+        // Configuración de Supabase
+        const SUPABASE_URL = "https://tmgsfbuvynxsrkxzsarr.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRtZ3NmYnV2eW54c3JreHpzYXJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NTkyNjgsImV4cCI6MjA4MDMzNTI2OH0.fGiMmNhYNTsNhnIbVFpLnF6hibZX8QoaJV6NreB-rfo";
+        
+        // Inicializar Supabase
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: {
+                autoRefreshToken: true,
+                persistSession: true,
+                detectSessionInUrl: true
+            }
+        });
+    </script>
+    <!-- SDK MercadoPago.js -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Verificar si el usuario ya está autenticado
+                const { data: { session }, error } = await supabaseClient.auth.getSession();
+                
+                if (error) throw error;
+                
+                if (session) {
+                    // Si ya está autenticado, redirigir al home
+                    window.location.href = 'home.html';
+                    return;
+                }
+
+                // Escuchar cambios en la autenticación
+                const { data: { subscription } } = supabaseClient.auth.onAuthStateChange((event, session) => {
+                    if (event === 'SIGNED_IN') {
+                        window.location.href = 'home.html';
+                    }
+                });
+
+                // Limpiar la suscripción cuando el componente se desmonte
+                window.addEventListener('beforeunload', () => {
+                    if (subscription) {
+                        subscription.unsubscribe();
+                    }
+                });
+            } catch (error) {
+                console.error('Error en la inicialización:', error);
+            }
+        });
+
+        // Navegación entre pestañas
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remover clase active de todas las pestañas
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                // Agregar clase active a la pestaña clickeada
+                tab.classList.add('active');
+                
+                // Ocultar todos los formularios
+                document.querySelectorAll('.form-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostrar el formulario correspondiente
+                const tabId = tab.getAttribute('data-tab');
+                if (tabId === 'login') {
+                    document.getElementById('login-form').classList.add('active');
+                } else if (tabId === 'register') {
+                    document.getElementById('register-form').classList.add('active');
+                }
+            });
+        });
+
+        // Mostrar formulario de recuperación
+        document.getElementById('show-recover').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('recover-form').classList.add('active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        });
+
+        // Volver al login desde recuperación
+        document.getElementById('back-to-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('recover-form').classList.remove('active');
+            document.getElementById('login-form').classList.add('active');
+            document.querySelector('.tab[data-tab="login"]').classList.add('active');
+            document.querySelector('.tab[data-tab="register"]').classList.remove('active');
+        });
+
+        // Manejo del envío de formularios
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) throw error;
+                
+                // Redirigir a la página de inicio después del inicio de sesión exitoso
+                window.location.href = 'home.html';
+            } catch (error) {
+                alert('Error al iniciar sesión: ' + error.message);
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            const username = document.getElementById('register-name').value.trim();
+            
+            // Validaciones
+            if (!email || !password || !username) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+            
+            if (password !== confirm) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+
+            const registerBtn = document.querySelector('#registerForm button[type="submit"]');
+            const originalBtnText = registerBtn.textContent;
+            
+            try {
+                // Deshabilitar botón y mostrar estado de carga
+                registerBtn.disabled = true;
+                registerBtn.textContent = 'Creando cuenta...';
+                
+                // 1. Registrar al usuario
+                const { data: authData, error: signUpError } = await supabaseClient.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            username: username,
+                            full_name: username
+                        },
+                        emailRedirectTo: window.location.origin + '/login.html'
+                    }
+                });
+
+                if (signUpError) throw signUpError;
+                
+                // Mostrar mensaje de éxito
+                alert('¡Registro exitoso! Por favor verifica tu correo electrónico para confirmar tu cuenta.');
+                
+                // Cambiar a la pestaña de inicio de sesión
+                document.querySelector('.tab[data-tab="login"]').click();
+                
+                // Limpiar el formulario
+                e.target.reset();
+                
+            } catch (error) {
+                console.error('Error en el registro:', error);
+                let errorMessage = 'Error al registrar la cuenta';
+                
+                if (error.message.includes('already registered')) {
+                    errorMessage = 'Este correo ya está registrado';
+                } else if (error.message.includes('password')) {
+                    errorMessage = 'La contraseña es demasiado débil';
+                } else if (error.message.includes('email')) {
+                    errorMessage = 'El correo electrónico no es válido';
+                } else {
+                    errorMessage = error.message;
+                }
+                
+                alert(errorMessage);
+            } finally {
+                // Restaurar el botón
+                registerBtn.disabled = false;
+                registerBtn.textContent = originalBtnText;
+            }
+        });
+
+        document.getElementById('recoverForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('recover-email').value;
+            
+            try {
+                const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: window.location.origin + '/reset-password.html'
+                });
+
+                if (error) throw error;
+                
+                alert('Se ha enviado un enlace de recuperación a tu correo electrónico.');
+                // Volver al formulario de inicio de sesión
+                document.getElementById('back-to-login').click();
+            } catch (error) {
+                alert('Error al enviar el enlace de recuperación: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

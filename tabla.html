@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Tabla de Participantes - Torneo Free Fire</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffa600;
+            font-size: 6vw;
+            text-align: center;
+            margin: 20px 0 30px;
+            text-transform: uppercase;
+        }
+
+        .table-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 45%;
+        }
+
+        .slot {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .slot:hover {
+            border-color: #ffa600;
+            box-shadow: 0 0 10px rgba(255, 166, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .number {
+            color: #ffa600;
+            font-size: 5vw;
+            font-weight: bold;
+        }
+
+        .player {
+            font-size: 4vw;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        @media (min-width: 700px) {
+            .number { font-size: 2vw; }
+            .player { font-size: 1.8vw; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Participantes Inscritos</h1>
+
+    <div class="table-wrapper">
+        <div class="column" id="col-left"></div>
+        <div class="column" id="col-right"></div>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="Untitled-1.html" style="
+            display: inline-block;
+            background: #ffa600;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: 0.3s;
+        ">Volver</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const left = document.getElementById("col-left");
+            const right = document.getElementById("col-right");
+
+            for (let i = 1; i <= 48; i++) {
+                const slot = document.createElement("div");
+                slot.className = "slot";
+
+                slot.innerHTML = `
+                    <div class="number">${i}</div>
+                `;
+
+                // IMPAR → columna izquierda
+                // PAR → columna derecha
+                if (i % 2 === 1) {
+                    left.appendChild(slot);
+                } else {
+                    right.appendChild(slot);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
